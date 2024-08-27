@@ -1,0 +1,110 @@
+.report-overlay {
+    position: fixed;
+    /* Fija la posición */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Fondo oscuro semitransparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    /* Asegura que esté encima de otros elementos */
+}
+
+.report-container {
+    max-width: 400px;
+    margin: 0;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    position: relative;
+    /* Necesario para el botón de cancelar */
+}
+
+.report-heading {
+    text-align: center;
+    color: #333;
+    margin-bottom: 15px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.form-group label {
+    flex: 1;
+    margin-right: 10px;
+    font-size: 14px;
+    color: #555;
+}
+
+.form-group input {
+    flex: 2;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #333;
+    box-sizing: border-box;
+}
+
+.form-group input:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(38, 143, 255, 0.2);
+}
+
+.button {
+    width: 100%;
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.button.primary {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.button.primary:hover {
+    background-color: #0056b3;
+}
+
+.button.secondary {
+    background-color: #6c757d;
+    color: #fff;
+    margin-top: 10px;
+}
+
+.button.secondary:hover {
+    background-color: #5a6268;
+}
+
+@media (max-width: 768px) {
+    .report-container {
+        padding: 10px;
+    }
+
+    .report-heading {
+        font-size: 18px;
+    }
+
+    .form-group input {
+        font-size: 12px;
+    }
+
+    .button {
+        font-size: 13px;
+    }
+}

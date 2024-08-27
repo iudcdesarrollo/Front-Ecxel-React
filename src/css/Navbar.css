@@ -1,0 +1,79 @@
+/* Estilos generales para el navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+}
+
+.navbar-logo .logo {
+    height: 40px;
+    /* Ajusta el tamaño del logo según sea necesario */
+}
+
+.navbar-links {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-link {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    color: #ddd;
+}
+
+/* Estilos para pantallas pequeñas */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .navbar-logo {
+        margin-bottom: 10px;
+    }
+
+    .navbar-links {
+        display: none;
+        /* Oculta los enlaces en pantallas pequeñas */
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .navbar-links.active {
+        display: flex;
+        /* Muestra los enlaces cuando la clase "active" está presente */
+    }
+
+    .nav-link {
+        padding: 10px 0;
+        font-size: 18px;
+    }
+}
+
+/* Estilos para el botón de menú en pantallas pequeñas */
+.menu-button {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.Logo-Text {
+    font-size: 18px;
+    color: #fff;
+}
+
+/* Muestra el botón de menú en pantallas pequeñas */
+@media (max-width: 768px) {
+    .menu-button {
+        display: block;
+    }
+}

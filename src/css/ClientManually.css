@@ -1,0 +1,136 @@
+/* ClientManually.css */
+
+/* Añadido para la superposición */
+.form-overlay {
+    position: fixed; /* Fija la posición */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro semitransparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Asegura que esté encima de otros elementos */
+}
+
+.form-container {
+    max-width: 400px;
+    margin: 0;
+    padding: 15px;
+    /* Relleno reducido */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    position: relative;
+    /* Necesario para el botón de cancelar */
+}
+
+.form-heading {
+    text-align: center;
+    color: #333;
+    margin-bottom: 15px;
+    /* Espacio reducido */
+    font-size: 20px;
+    /* Tamaño de fuente reducido */
+    font-weight: bold;
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+    /* Alinea verticalmente los elementos */
+    margin-bottom: 10px;
+    /* Espacio reducido entre campos */
+}
+
+.form-label {
+    flex: 1;
+    /* Ocupa el espacio disponible */
+    margin-right: 10px;
+    /* Espacio entre etiqueta y campo */
+    font-size: 14px;
+    /* Tamaño de fuente reducido */
+    color: #555;
+}
+
+.form-input {
+    flex: 2;
+    /* Ocupa más espacio en la fila */
+    padding: 8px;
+    /* Relleno reducido */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 13px;
+    /* Tamaño de fuente reducido */
+    color: #333;
+    box-sizing: border-box;
+}
+
+.form-input:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(38, 143, 255, 0.2);
+}
+
+.submit-button, .cancel-button {
+    width: 100%;
+    padding: 8px;
+    /* Relleno reducido */
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    /* Tamaño de fuente reducido */
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-button {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.submit-button:hover {
+    background-color: #0056b3;
+}
+
+.cancel-button {
+    background-color: #6c757d;
+    color: #fff;
+    margin-top: 10px;
+    /* Espacio entre botones */
+}
+
+.cancel-button:hover {
+    background-color: #5a6268;
+}
+
+.error-message {
+    color: #dc3545;
+    font-size: 12px;
+    /* Tamaño de fuente reducido */
+    margin-top: 5px;
+    /* Espacio reducido */
+}
+
+@media (max-width: 768px) {
+    .form-container {
+        padding: 10px;
+        /* Relleno reducido en pantallas pequeñas */
+    }
+
+    .form-heading {
+        font-size: 18px;
+        /* Tamaño de fuente reducido en pantallas pequeñas */
+    }
+
+    .form-input {
+        font-size: 12px;
+        /* Tamaño de fuente reducido en pantallas pequeñas */
+    }
+
+    .submit-button, .cancel-button {
+        font-size: 13px;
+        /* Tamaño de fuente reducido en pantallas pequeñas */
+    }
+}

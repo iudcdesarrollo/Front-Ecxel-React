@@ -1,0 +1,58 @@
+/* Contenedor principal de la sección */
+.section-with-menu {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+}
+
+/* Estilo para el botón de menú */
+.menu-toggle {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    margin-left: auto; /* Alinea el botón a la derecha */
+    padding: 0;
+    position: relative; /* Asegura que el menú se posicione correctamente respecto al botón */
+    z-index: 20; /* Asegura que el botón esté por encima del menú desplegable */
+}
+
+/* Estilos para el menú desplegable */
+.dropdown-menu {
+    position: absolute;
+    top: 100%; /* Posiciona el menú justo debajo del botón */
+    right: 0;
+    background-color: #444;
+    color: #fff;
+    border: 1px solid #333;
+    border-radius: 4px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+    margin-top: 10px; /* Espacio entre el botón y el menú desplegable */
+    z-index: 10; /* Asegura que el menú esté debajo del botón */
+    width: max-content; /* Ajusta el ancho del menú según su contenido */
+}
+
+.dropdown-menu.open {
+    display: flex;
+}
+
+.dropdown-link {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    display: block; /* Para que ocupe todo el ancho del contenedor */
+}
+
+.dropdown-link:hover {
+    background-color: #555;
+}

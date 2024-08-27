@@ -1,0 +1,92 @@
+/* Archivo CSS (por ejemplo, DataTable.css) */
+
+.table-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Cambiado para alinear la tabla al centro horizontalmente */
+    height: 100vh;
+    /* Ocupa toda la altura de la vista */
+    padding: 20px;
+    /* Espacio alrededor de la tabla */
+    box-sizing: border-box;
+    /* Incluye el padding en el tamaño total del contenedor */
+    width: 100%;
+    /* Asegura que el contenedor ocupe todo el ancho disponible */
+}
+
+.table {
+    width: 100%;
+    max-width: 1500px;
+    /* Aumenta el ancho máximo de la tabla */
+    /* Máximo ancho de la tabla */
+    border-collapse: collapse;
+    /* Elimina el espacio entre bordes */
+    background-color: #f8f9fa;
+    /* Color de fondo de la tabla */
+    border-radius: 8px;
+    /* Bordes redondeados */
+    overflow: hidden;
+    /* Oculta el desbordamiento para bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Sombra suave */
+}
+
+.table th,
+.table td {
+    border: 1px solid #dee2e6;
+    /* Color del borde */
+    padding: 12px 15px;
+    /* Espaciado dentro de las celdas */
+    text-align: left;
+    /* Alineación del texto */
+}
+
+.table th {
+    background-color: #343a40;
+    /* Color de fondo del encabezado */
+    color: #ffffff;
+    /* Color del texto del encabezado */
+    font-weight: bold;
+    /* Texto en negrita */
+}
+
+.table tr:nth-child(even) {
+    background-color: #e9ecef;
+    /* Color de fondo de las filas pares */
+}
+
+.table tr:hover {
+    background-color: #f1f1f1;
+    /* Color de fondo al pasar el ratón sobre la fila */
+}
+
+.table td {
+    color: #495057;
+    /* Color del texto */
+}
+
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.page-button {
+    border: none;
+    background-color: #f8f9fa;
+    padding: 10px 15px;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.page-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.page-button.active {
+    font-weight: bold;
+    background-color: #343a40;
+    color: #fff;
+}

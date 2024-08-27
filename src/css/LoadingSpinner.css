@@ -1,0 +1,30 @@
+/* Contenedor del spinner en la parte inferior del viewport */
+.loading-spinner-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute; /* Cambio a absoluto */
+    top: 50%; /* Centramos verticalmente */
+    left: 50%; /* Centramos horizontalmente */
+    transform: translate(-50%, -50%); /* Ajustamos el centro del contenedor */
+    background: rgba(0, 0, 0, 0.7); /* Fondo oscuro semitransparente */
+    border-radius: 8px; /* Bordes redondeados */
+    padding: 10px 20px; /* Espaciado interno */
+    color: white;
+    font-family: Arial, sans-serif;
+    z-index: 1000; /* Asegura que esté sobre otros elementos */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Sombra para más visibilidad */
+}
+
+/* Contenedor del spinner y el texto */
+.spinner-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espacio entre el spinner y el texto */
+}
+
+/* Estilo del texto de carga */
+.loading-text {
+    font-size: 16px; /* Tamaño de fuente más pequeño */
+    font-weight: 500; /* Peso de fuente ligero */
+}
