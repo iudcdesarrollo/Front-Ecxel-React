@@ -4,11 +4,10 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "start": "npx http-server ./dist",
     "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint .",
-    "preview": "vite preview",
-    "start": "serve dist -s -n -L -p 3000"
+    "build": "tsc && vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
     "axios": "^1.7.5",
