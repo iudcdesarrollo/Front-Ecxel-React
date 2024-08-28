@@ -1,5 +1,5 @@
-import Navbar from './components/Menu.jsx';
-import SectionWithMenu from './components/SectionMenu.jsx';
+import Navbar from './Components/Menu.jsx';
+import SectionWithMenu from './Components/SectionMenu.jsx';
 import FilterControls from './Components/FilterControls.jsx';
 import LoadingSpinner from './Components/LoadingSpinner.jsx';
 import DataTable from './Components/DataTable.jsx';
