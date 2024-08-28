@@ -8,7 +8,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "start":"serve dist -s -n -L -p 5001"
+    "start": "serve dist -s -n -L -p 3000"
   },
   "dependencies": {
     "axios": "^1.7.5",
@@ -19,7 +19,8 @@
     "react-paginate": "^8.2.0",
     "react-spinners": "^0.14.1",
     "react-table": "^7.8.0",
-    "react-toastify": "^10.0.5"
+    "react-toastify": "^10.0.5",
+    "serve": "^14.2.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
