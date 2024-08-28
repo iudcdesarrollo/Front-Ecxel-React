@@ -3,6 +3,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { format } from 'date-fns';
 import '../css/FilterControls.css';
+import LoadingSpinner from './LoadingSpinner'
 
 const autenticacionServer = import.meta.env.VITE_SERVER_AUTHENTICATION_KEY;
 const enpointConsultas = import.meta.env.VITE_ENPOINT_SERVER_CALLCENTER_CONSULTAS;
@@ -15,11 +16,13 @@ const enpointConsultas = import.meta.env.VITE_ENPOINT_SERVER_CALLCENTER_CONSULTA
  * Inicio', and 'Fecha Fin', and a 'Consultar' button. The component handles user input changes and
  * button clicks to fetch data based on the selected filters and input values
  */
+
 const FilterControls = ({ onDataFetched }) => {
   const [telefono, setTelefono] = useState('');
   const [tipo, setTipo] = useState('');
   const [fechaInicio, setFechaInicio] = useState('');
   const [fechaFin, setFechaFin] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const formatDateTime = (dateStr) => {
     if (!dateStr) return undefined;
@@ -28,6 +31,7 @@ const FilterControls = ({ onDataFetched }) => {
   };
 
   const fetchData = async () => {
+    setLoading(true);
     try {
       const response = await axios.get(enpointConsultas, {
         params: {
@@ -41,7 +45,6 @@ const FilterControls = ({ onDataFetched }) => {
         },
       });
 
-      // Asegúrate de que los datos estén en el formato correcto para App
       const data = response.data;
       const formattedData = data.map(item => ({
         fecha_envio_wha: item.fecha_envio_wha,
@@ -55,6 +58,8 @@ const FilterControls = ({ onDataFetched }) => {
       onDataFetched(formattedData);
     } catch (error) {
       console.error('Error fetching data:', error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -77,6 +82,7 @@ const FilterControls = ({ onDataFetched }) => {
 
   return (
     <div className="filter-controls">
+      {loading && <LoadingSpinner />}
       <div className="filter-buttons">
         <button className="filter-button" onClick={() => handleFilterClick('gestionado')}>Gestionados</button>
         <button className="filter-button" onClick={() => handleFilterClick('no-gestionado')}>No Gestionados</button>
