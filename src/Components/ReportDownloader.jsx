@@ -92,6 +92,7 @@ const ReportDownloader = ({ onCancel }) => {
                 <button className="button primary" onClick={handleDownload} disabled={loading}>
                     {loading ? 'Descargando...' : 'Descargar Reporte'}
                 </button>
+                <button className="cancel-button" onClick={onCancel}>Cancelar</button>
             </div>
             <ToastContainer />
         </div>

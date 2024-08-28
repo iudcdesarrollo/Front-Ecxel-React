@@ -95,7 +95,6 @@ const ManualCustomerEntryForm = ({ onCancel }) => {
     return (
         <div className="form-overlay">
             <div className="form-container">
-                <button className="cancel-button" onClick={onCancel}>Cancelar</button>
                 <h2 className="form-heading">Ingreso Manual de Clientes</h2>
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
@@ -164,6 +163,7 @@ const ManualCustomerEntryForm = ({ onCancel }) => {
                         />
                     </div>
                     <button type="submit" className="submit-button">Enviar</button>
+                    <button className="cancel-button" onClick={onCancel}>Cancelar</button>
                 </form>
                 <ToastContainer />
             </div>
