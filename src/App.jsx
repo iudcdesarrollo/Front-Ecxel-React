@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
-import Navbar from './components/Menu';
-import SectionWithMenu from './components/SectionMenu';
+import Navbar from './components/Menu.jsx';
+import SectionWithMenu from './components/SectionMenu.jsx';
+import FilterControls from './Components/FilterControls.jsx';
+import LoadingSpinner from './Components/LoadingSpinner.jsx';
+import DataTable from './Components/DataTable.jsx';
 import './App.css';
-import DataTable from './Components/DataTable';
 import axios from 'axios';
-import FilterControls from './Components/FilterControls';
-import LoadingSpinner from './Components/LoadingSpinner';
+import { useEffect, useState } from 'react';
 
 const authServer = import.meta.env.VITE_SERVER_AUTHENTICATION_KEY;
 const endpointGetClients = import.meta.env.VITE_ENPOINT_SERVER_CLIENTS_DATA;
