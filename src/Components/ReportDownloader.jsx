@@ -21,6 +21,12 @@ const ReportDownloader = ({ onCancel }) => {
     const [endDate, setEndDate] = useState('');
     const [loading, setLoading] = useState(false);
 
+    const formatDateToISO = (dateStr) => {
+        if (!dateStr) return '';
+        const date = new Date(dateStr);
+        return date.toISOString();
+    };
+
     const handleDownload = async () => {
         if (!startDate || !endDate) {
             toast.error('Por favor, completa ambos campos de fecha.', {
@@ -32,10 +38,17 @@ const ReportDownloader = ({ onCancel }) => {
         setLoading(true);
 
         try {
+            const formattedStartDate = formatDateToISO(startDate);
+
+            // Ajusta la fecha de fin para incluir toda la última hora del día
+            const endDateWithTime = new Date(endDate);
+            endDateWithTime.setUTCHours(23, 59, 59, 999);
+            const formattedEndDateWithTime = endDateWithTime.toISOString();
+
             const response = await axios.get(enpointReportesExcel, {
                 params: {
-                    startDate,
-                    endDate
+                    startDate: formattedStartDate,
+                    endDate: formattedEndDateWithTime
                 },
                 headers: {
                     "authorization": autenticacionServer
