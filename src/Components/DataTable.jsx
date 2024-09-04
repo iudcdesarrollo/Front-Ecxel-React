@@ -14,7 +14,6 @@ const DataTable = ({ columns, data, pageCount, gotoPage, previousPage, nextPage,
     usePagination
   );
 
-  // Configuración de la paginación visible
   const pageRange = 2; // Número de páginas a mostrar a cada lado de la página actual
   const startPage = Math.max(0, pageIndex - pageRange);
   const endPage = Math.min(pageCount - 1, pageIndex + pageRange);

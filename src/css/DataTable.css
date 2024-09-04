@@ -25,6 +25,8 @@
     padding: 12px 15px;
     text-align: left;
     white-space: nowrap; /* Evita que el texto se ajuste y ayuda a prevenir el desbordamiento */
+    overflow: hidden; /* Oculta el desbordamiento del contenido */
+    text-overflow: ellipsis; /* Muestra puntos suspensivos cuando el contenido es demasiado largo */
 }
 
 .table th {
