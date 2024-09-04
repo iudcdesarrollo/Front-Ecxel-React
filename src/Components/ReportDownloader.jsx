@@ -40,7 +40,6 @@ const ReportDownloader = ({ onCancel }) => {
         try {
             const formattedStartDate = formatDateToISO(startDate);
 
-            // Ajusta la fecha de fin para incluir toda la última hora del día
             const endDateWithTime = new Date(endDate);
             endDateWithTime.setUTCHours(23, 59, 59, 999);
             const formattedEndDateWithTime = endDateWithTime.toISOString();
