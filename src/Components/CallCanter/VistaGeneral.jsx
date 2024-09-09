@@ -27,8 +27,6 @@ const VistaGeneral = ({ nameService }) => {
         });
 
         const responseData = response.data;
-        console.log('Response data:', responseData);
-
         const dataArray = responseData.data || responseData;
 
         if (Array.isArray(dataArray)) {
@@ -88,7 +86,7 @@ const VistaGeneral = ({ nameService }) => {
       </div>
     </>
   );
-}
+};
 
 VistaGeneral.propTypes = {
   nameService: PropTypes.string.isRequired

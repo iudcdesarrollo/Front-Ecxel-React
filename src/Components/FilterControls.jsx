@@ -3,37 +3,36 @@ import { useState } from 'react';
 import axios from 'axios';
 import { format } from 'date-fns';
 import '../css/FilterControls.css';
-import LoadingSpinner from './LoadingSpinner'
+import LoadingSpinner from './LoadingSpinner';
 
 const autenticacionServer = import.meta.env.VITE_SERVER_AUTHENTICATION_KEY;
 const enpointConsultas = import.meta.env.VITE_ENPOINT_SERVER_CALLCENTER_CONSULTAS;
 
 /**
- * The `FilterControls` component in JavaScript React allows users to filter and fetch data based on
- * various criteria such as phone number, date range, and type.
- * @returns The `FilterControls` component is being returned. It consists of filter buttons for
- * 'Gestionados', 'No Gestionados', and 'Interesados', input fields for 'Número de Teléfono', 'Fecha
- * Inicio', and 'Fecha Fin', and a 'Consultar' button. The component handles user input changes and
- * button clicks to fetch data based on the selected filters and input values
+ * The `FilterControls` component allows users to filter and fetch data based on
+ * various criteria such as phone number, date range, and type, with pagination support.
+ * @param {Object} props - The component props.
+ * @param {Function} props.onDataFetched - Callback function to handle the fetched data.
+ * @param {string} props.nameService - The name of the service for filtering data.
+ * @returns {JSX.Element} The `FilterControls` component.
  */
-
 const FilterControls = ({ onDataFetched, nameService }) => {
   const [telefono, setTelefono] = useState('');
   const [tipo, setTipo] = useState('');
   const [fechaInicio, setFechaInicio] = useState('');
   const [fechaFin, setFechaFin] = useState('');
   const [loading, setLoading] = useState(false);
-
-  const servicio = nameService;
-
+  const [pageIndex, setPageIndex] = useState(0);
+  const [pageSize] = useState(10);
+  const [totalPages, setTotalPages] = useState(0);
 
   const formatDateTime = (dateStr) => {
     if (!dateStr) return undefined;
     const date = new Date(dateStr);
-    return format(date, 'yyyy-MM-dd HH:mm:ss');
+    return format(date, 'yyyy-MM-dd');
   };
 
-  const fetchData = async () => {
+  const fetchData = async (page = 0) => {
     setLoading(true);
     try {
       const response = await axios.get(enpointConsultas, {
@@ -42,7 +41,9 @@ const FilterControls = ({ onDataFetched, nameService }) => {
           telefono: telefono || undefined,
           fechaInicio: formatDateTime(fechaInicio) || undefined,
           fechaFin: formatDateTime(fechaFin) || undefined,
-          nameService: servicio,
+          nameService: nameService,
+          page: page + 1,
+          limit: pageSize,
         },
         headers: {
           "authorization": autenticacionServer,
@@ -50,7 +51,7 @@ const FilterControls = ({ onDataFetched, nameService }) => {
       });
 
       const data = response.data;
-      const formattedData = data.map(item => ({
+      const formattedData = data.data.map(item => ({
         fecha_envio_wha: item.fecha_envio_wha,
         telefono: item.telefono,
         correo: item.correo,
@@ -59,6 +60,7 @@ const FilterControls = ({ onDataFetched, nameService }) => {
         apellidos: item.apellidos,
         estado: item.Estado ? item.Estado.nombre : 'N/A'
       }));
+      setTotalPages(Math.ceil(data.total / pageSize));
       onDataFetched(formattedData);
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -82,6 +84,11 @@ const FilterControls = ({ onDataFetched, nameService }) => {
 
   const handleFechaFinChange = (event) => {
     setFechaFin(event.target.value);
+  };
+
+  const handlePageChange = (newPageIndex) => {
+    setPageIndex(newPageIndex);
+    fetchData(newPageIndex);
   };
 
   return (
@@ -115,7 +122,24 @@ const FilterControls = ({ onDataFetched, nameService }) => {
           onChange={handleFechaFinChange}
         />
       </div>
-      <button className="filter-submit" onClick={fetchData}>Consultar</button>
+      <button className="filter-submit" onClick={() => fetchData(pageIndex)}>Consultar</button>
+      <div className="pagination-controls">
+        <button
+          className="pagination-button"
+          onClick={() => handlePageChange(pageIndex - 1)}
+          disabled={pageIndex <= 0}
+        >
+          Anterior
+        </button>
+        <span>{pageIndex + 1} de {totalPages}</span>
+        <button
+          className="pagination-button"
+          onClick={() => handlePageChange(pageIndex + 1)}
+          disabled={pageIndex >= totalPages - 1}
+        >
+          Siguiente
+        </button>
+      </div>
     </div>
   );
 };
