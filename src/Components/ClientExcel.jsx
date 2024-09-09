@@ -15,7 +15,7 @@ const enpoint = import.meta.env.VITE_ENPOINT_SERVER_CALLCENTER_EXCEL;
  * upload container with input for selecting a file, error message display, buttons for uploading and
  * canceling, and a toast container for displaying success or error messages.
  */
-const FileUploadComponent = ({ onCancel }) => {
+const FileUploadComponent = ({ onCancel, nameServicio }) => {
     const [file, setFile] = useState(null);
     const [error, setError] = useState('');
 
@@ -38,6 +38,7 @@ const FileUploadComponent = ({ onCancel }) => {
         if (file) {
             const formData = new FormData();
             formData.append('file', file);
+            formData.append('nameServicio', nameServicio);
 
             try {
                 const response = await axios.post(enpoint, formData, {
@@ -82,6 +83,7 @@ const FileUploadComponent = ({ onCancel }) => {
 
 FileUploadComponent.propTypes = {
     onCancel: PropTypes.func.isRequired,
+    nameServicio: PropTypes.string.isRequired
 };
 
 export default FileUploadComponent;

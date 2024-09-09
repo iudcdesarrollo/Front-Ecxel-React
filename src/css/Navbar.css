@@ -8,11 +8,12 @@
     color: #fff;
 }
 
-.navbar-logo .logo {
-    height: 40px;
-    /* Ajusta el tamaño del logo según sea necesario */
+.navbar-logo p {
+    margin: 0;
+    font-size: 18px;
 }
 
+/* Estilos para los enlaces de navegación */
 .navbar-links {
     display: flex;
     gap: 20px;
@@ -23,6 +24,10 @@
     text-decoration: none;
     font-size: 16px;
     transition: color 0.3s;
+    border: none;
+    background: none;
+    padding: 0;
+    cursor: pointer; /* Añadido para el cursor de mano */
 }
 
 .nav-link:hover {
@@ -63,12 +68,11 @@
 .menu-button {
     display: none;
     font-size: 24px;
-    cursor: pointer;
-}
-
-.Logo-Text {
-    font-size: 18px;
-    color: #fff;
+    cursor: pointer; /* Cambiado a puntero para indicar clickeable */
+    background: none;
+    border: none;
+    color: #fff; /* Cambia el color del texto del botón a blanco */
+    padding: 0;
 }
 
 /* Muestra el botón de menú en pantallas pequeñas */

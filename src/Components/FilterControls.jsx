@@ -17,12 +17,15 @@ const enpointConsultas = import.meta.env.VITE_ENPOINT_SERVER_CALLCENTER_CONSULTA
  * button clicks to fetch data based on the selected filters and input values
  */
 
-const FilterControls = ({ onDataFetched }) => {
+const FilterControls = ({ onDataFetched, nameService }) => {
   const [telefono, setTelefono] = useState('');
   const [tipo, setTipo] = useState('');
   const [fechaInicio, setFechaInicio] = useState('');
   const [fechaFin, setFechaFin] = useState('');
   const [loading, setLoading] = useState(false);
+
+  const servicio = nameService;
+
 
   const formatDateTime = (dateStr) => {
     if (!dateStr) return undefined;
@@ -39,6 +42,7 @@ const FilterControls = ({ onDataFetched }) => {
           telefono: telefono || undefined,
           fechaInicio: formatDateTime(fechaInicio) || undefined,
           fechaFin: formatDateTime(fechaFin) || undefined,
+          nameService: servicio,
         },
         headers: {
           "authorization": autenticacionServer,
@@ -118,6 +122,7 @@ const FilterControls = ({ onDataFetched }) => {
 
 FilterControls.propTypes = {
   onDataFetched: PropTypes.func.isRequired,
+  nameService: PropTypes.string.isRequired
 };
 
 export default FilterControls;

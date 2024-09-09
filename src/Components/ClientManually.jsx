@@ -8,16 +8,7 @@ import '../css/ClientManually.css';
 const claveAccesServer = import.meta.env.VITE_SERVER_AUTHENTICATION_KEY;
 const enpoint = import.meta.env.VITE_ENPOINT_SERVER_CALLCENTER_MANUALLY;
 
-/**
- * The `ManualCustomerEntryForm` component is a form in a React application for manually entering
- * customer details with validation and submission functionality.
- * @returns The `ManualCustomerEntryForm` component is being returned. This component renders a form
- * for manual entry of customer information. It includes input fields for name, last name, email, phone
- * number, program of interest, and a read-only field for the current date. The form also has
- * validation checks for required fields, valid email format, and valid Colombian phone number format.
- * Upon submission, the form makes
- */
-const ManualCustomerEntryForm = ({ onCancel }) => {
+const ManualCustomerEntryForm = ({ onCancel, servicio }) => {
     const getCurrentDate = () => {
         const today = new Date();
         const year = today.getFullYear();
@@ -32,6 +23,7 @@ const ManualCustomerEntryForm = ({ onCancel }) => {
         correo: '',
         telefono: '',
         posgradoInteres: '',
+        servicio: servicio,
         fechaIngresoMeta: getCurrentDate()
     });
 
@@ -39,14 +31,14 @@ const ManualCustomerEntryForm = ({ onCancel }) => {
         const { name, value } = e.target;
         setFormData({
             ...formData,
-            [name]: value
+            [name]: value,
         });
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (!formData.nombre || !formData.apellido || !formData.correo || !formData.telefono || !formData.posgradoInteres) {
+        if (!formData.nombre || !formData.apellido || !formData.correo || !formData.telefono || !formData.posgradoInteres || !formData.servicio) {
             toast.error('Todos los campos son obligatorios.');
             return;
         }
@@ -67,11 +59,11 @@ const ManualCustomerEntryForm = ({ onCancel }) => {
         formData.telefono = telefonoConPrefijo;
 
         try {
-            const response = await axios.post(enpoint, formData,{
+            const response = await axios.post(enpoint, formData, {
                 headers: {
                     'Content-Type': 'application/json',
-                    'authorization': claveAccesServer
-                }
+                    'authorization': claveAccesServer,
+                },
             });
             if (response.status === 200 || response.status === 201) {
                 toast.success(response.data.message);
@@ -81,6 +73,7 @@ const ManualCustomerEntryForm = ({ onCancel }) => {
                     correo: '',
                     telefono: '',
                     posgradoInteres: '',
+                    servicio: servicio,
                     fechaIngresoMeta: getCurrentDate()
                 });
             } else {
@@ -153,6 +146,16 @@ const ManualCustomerEntryForm = ({ onCancel }) => {
                         />
                     </div>
                     <div className="form-group">
+                        <label className="form-label">Servicio:</label>
+                        <input
+                            type="text"
+                            name="servicio"
+                            value={formData.servicio}
+                            className="form-input"
+                            readOnly
+                        />
+                    </div>
+                    <div className="form-group">
                         <label className="form-label">Fecha de Ingreso:</label>
                         <input
                             type="text"
@@ -173,6 +176,7 @@ const ManualCustomerEntryForm = ({ onCancel }) => {
 
 ManualCustomerEntryForm.propTypes = {
     onCancel: PropTypes.func.isRequired,
+    servicio: PropTypes.string.isRequired
 };
 
 export default ManualCustomerEntryForm;

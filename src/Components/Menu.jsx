@@ -1,13 +1,8 @@
 import { useState } from 'react';
 import '../css/Navbar.css';
+import PropTypes from 'prop-types';
 
-/**
- * The Navbar component in JavaScript React toggles a menu open and closed when a button is clicked.
- * @returns The `Navbar` component is being returned. It consists of a navigation bar with a logo, a
- * menu button that toggles the visibility of the navigation links, and two navigation links for "Home"
- * and "Auth".
- */
-const Navbar = () => {
+const Navbar = ({ onSelectView }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -17,18 +12,22 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-logo">
-        {/* <img src="/path/to/logo.png" alt="Universitaria de Colombia" className="logo" /> */}
         <p>Inovaccion IA Call Center</p>
       </div>
       <div className="menu-button" onClick={toggleMenu}>
         ☰
       </div>
       <div className={`navbar-links ${isMenuOpen ? 'active' : ''}`}>
-        <a href="#home" className="nav-link">Home</a>
-        <a href="#auth" className="nav-link">Auth</a>
+        <button onClick={() => onSelectView('CallCenter')} className="nav-link">Call Center</button>
+        <button onClick={() => onSelectView('IPS')} className="nav-link">IPS</button>
+        <button onClick={() => onSelectView('Veterinaria')} className="nav-link">Veterinaria</button>
       </div>
     </nav>
   );
+};
+
+Navbar.propTypes = {
+  onSelectView: PropTypes.func.isRequired,
 };
 
 export default Navbar;

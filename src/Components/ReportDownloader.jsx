@@ -16,7 +16,7 @@ const enpointReportesExcel = import.meta.env.VITE_ENPOINT_SERVER_CALLCENTER_Repo
  * fields for the start and end dates, a button to trigger the download process, and toast
  * notifications for success or error messages during the download process.
  */
-const ReportDownloader = ({ onCancel }) => {
+const ReportDownloader = ({ onCancel, servicioNombre }) => {
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
     const [loading, setLoading] = useState(false);
@@ -47,7 +47,8 @@ const ReportDownloader = ({ onCancel }) => {
             const response = await axios.get(enpointReportesExcel, {
                 params: {
                     startDate: formattedStartDate,
-                    endDate: formattedEndDateWithTime
+                    endDate: formattedEndDateWithTime,
+                    servicioNombre: servicioNombre
                 },
                 headers: {
                     "authorization": autenticacionServer
@@ -112,7 +113,8 @@ const ReportDownloader = ({ onCancel }) => {
 };
 
 ReportDownloader.propTypes = {
-    onCancel: PropTypes.func
+    onCancel: PropTypes.func,
+    servicioNombre: PropTypes.string.isRequired
 };
 
 export default ReportDownloader;
