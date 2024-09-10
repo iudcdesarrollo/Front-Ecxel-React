@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import FileUploadComponent from './ClientExcel';
 import ManualCustomerEntryForm from './ClientManually';
 import ReportDownloader from './ReportDownloader';
+import MetricasLedas from './ServiceDashboard/MetricasLedas';
 
 /* This code defines a functional React component called `SectionWithMenu`. Inside this component, it
 manages the state using the `useState` hook to keep track of whether the menu is open (`isMenuOpen`)
@@ -25,6 +26,10 @@ const SectionWithMenu = ({nameServicio}) => {
     setActiveComponent('report');
     setIsMenuOpen(false);
   };
+  const showMetrics = () => {
+    setActiveComponent('metrics');
+    setIsMenuOpen(false);
+  };
   const handleCancel = () => setActiveComponent(null);
 
   return (
@@ -36,10 +41,12 @@ const SectionWithMenu = ({nameServicio}) => {
         <a href="#excel" className="dropdown-link" onClick={showExcel}>Excel</a>
         <a href="#clientes" className="dropdown-link" onClick={showClientes}>Clientes</a>
         <a href="#report" className="dropdown-link" onClick={showReport}>Reporte Excel</a>
+        <a href="#metrics" className="dropdown-link" onClick={showMetrics}>Métricas</a>
       </div>
       {activeComponent === 'excel' && <FileUploadComponent onCancel={handleCancel} nameServicio={nameServicio}/>}
       {activeComponent === 'clientes' && <ManualCustomerEntryForm onCancel={handleCancel} servicio={nameServicio} />}
       {activeComponent === 'report' && <ReportDownloader onCancel={handleCancel} servicioNombre={nameServicio}/>}
+      {activeComponent === 'metrics' && <MetricasLedas onCancel={handleCancel} nameService={nameServicio} />}
     </div>
   );
 };

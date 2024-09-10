@@ -1,29 +1,14 @@
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
-import { useState } from 'react';
-import VistaGeneral from './Components/CallCanter/VistaGeneral';
-import Navbar from './Components/Menu.jsx';
+import ServiceDashboard from './Components/ServiceDashboard/ServiceDashboard.jsx';
 
 function App() {
-  const [selectedView, setSelectedView] = useState('CallCenter');
-
-  const renderView = () => {
-    switch (selectedView) {
-      case 'IPS':
-        return <VistaGeneral nameService={"IPS"} />;
-      case 'CallCenter':
-        return <VistaGeneral nameService={"CallCenter"} />;
-      case 'Veterinaria':
-        return <VistaGeneral nameService={"Veterinaria"} />;
-      default:
-        return null;
-    }
-  };
-
   return (
-    <>
-      <Navbar onSelectView={setSelectedView} />
-      {renderView()}
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<ServiceDashboard />} />
+      </Routes>
+    </Router>
   );
 }
 
