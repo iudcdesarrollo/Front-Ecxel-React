@@ -8,7 +8,7 @@ export default defineConfig({
     proxy: {
       '/api': {
         //target: 'http://18.228.211.14:9999',
-        target: import.meta.env.VITE_SERVER_API,
+        target: "http://18.228.211.14:9999",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
       },
